@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  app:
+    container_name: test-nodejs
+    restart: always
+    build: .
+    ports:
+      - '2000:2000'
+    env_file:
+      - ./.env
+    links:
+      - mongo
+
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - "3000:27017"
+
